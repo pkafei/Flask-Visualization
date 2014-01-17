@@ -1,6 +1,7 @@
 import os
 from flask import Flask, render_template, send_from_directory
-
+from flask import Flask
+from flask.ext.sqlalchemy import SQLAlchemy
 #-----------------------------
 # initialization
 # -----------------------------
@@ -12,9 +13,17 @@ app.config.update(
 )
 
 #------------------------------
-#controllers
+#database
 #------------------------------
 
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:root@localhost/viz_data'
+db = SQLAlchemy(app)
+from sqlalchemy import create_engine
+engine = create_engine(['postgresql://postgres:root@localhost/viz_data'])
+#------------------------------
+#controllers
+#------------------------------
 
 @app.route('/favicon.ico')
 def favicon():
