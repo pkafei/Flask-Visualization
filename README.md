@@ -10,7 +10,7 @@ I am a flask application that wants to grow up and become a kick-ass visualizati
 Take a sneak peak at the issues links, if you have any pointers please leave a comment underneath the issue.  Helpful hints are enthusiastically encouraged!
 
 
-## Roll Call of Technologies Used
+## Roll Call of Technologies Used:
 * Python
 * Sqlalchemy
 * Twitter Bootstrap
