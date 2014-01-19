@@ -2,6 +2,17 @@ import os
 from flask import Flask, render_template, send_from_directory
 from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
+from sqlalchemy.dialects.postgresql import CHAR, INTEGER, DOUBLE_PRECISION
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy import create_engine
+engine = create_engine(['postgresql://postgres:root@localhost/viz_data'])
+Session = sessionmaker(bind=engine)
+session = Session()
+
+from sqlalchemy.ext.declarative import declarative_base
+
+
 #-----------------------------
 # initialization
 # -----------------------------
@@ -13,14 +24,25 @@ app.config.update(
 )
 
 #------------------------------
-#database
+#database config
 #------------------------------
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:root@localhost/viz_data'
+app.config['SQLALCHEMY_DATABASE_URI'] = ['postgresql://postgres:root@localhost/viz_data']
 db = SQLAlchemy(app)
-from sqlalchemy import create_engine
-engine = create_engine(['postgresql://postgres:root@localhost/viz_data'])
+
+#------------------------------
+#database models
+#------------------------------
+Base = declarative_base()
+class Bankruptcy(Base):
+    __tablename__ = 'bankruptcy'
+    city = Column(CHAR(125), primary_key=False)
+    state = Column(CHAR(125))
+    population = Column(INTEGER)
+    unemployment = Column(DOUBLE_PRECISION)
+
+
 #------------------------------
 #controllers
 #------------------------------
