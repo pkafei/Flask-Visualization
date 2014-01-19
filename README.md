@@ -3,7 +3,7 @@ Simple Flask Visualization
 
 ## Who Am I?
 
-I am a flask application that wants to grow up and become a kick-ass visualizatioin app.  For now, I am still trying to figure out how to use d3 to render my data in Postgres.
+I am a flask application that wants to grow up and become a kick-ass visualizatioin app.  For now, I am still trying to figure out how to use d3 to render my data stored in Postgres.
 
 ## What can you do?
 
